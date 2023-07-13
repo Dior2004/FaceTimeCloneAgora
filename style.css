@@ -38,8 +38,8 @@ body main {
   position: absolute;
   top: 0;
   left: 0;
-  backdrop-filter: blur(80px);
-  -webkit-backdrop-filter: blur(80px);
+  backdrop-filter: blur(33px);
+  -webkit-backdrop-filter: blur(33px);
 }
 
 main .wrap {
