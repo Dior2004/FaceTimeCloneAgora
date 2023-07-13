@@ -43,8 +43,8 @@ body main {
   position: absolute;
   top: 0;
   left: 0;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
 }
 
 main .wrap {
