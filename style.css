@@ -39,6 +39,7 @@ body main {
   top: 0;
   left: 0;
   backdrop-filter: blur(80px);
+  -webkit-backdrop-filter: blur(80px);
 }
 
 main .wrap {
