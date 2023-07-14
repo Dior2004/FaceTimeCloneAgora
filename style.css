@@ -55,11 +55,12 @@ main .wrap {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 main .wrap p {
   max-width: 350px;
-  margin-top: 50px;
+  margin-top: 40px;
   text-align: center;
   letter-spacing: 0.6px;
   word-spacing: 2px;
