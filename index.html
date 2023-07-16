@@ -2,48 +2,48 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#121212" />
-    <link rel="stylesheet" href="/style.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <title>Face Time</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Basic Video Call -- Agora</title>
+    <link rel="stylesheet" href="/index.css" />
   </head>
   <body>
-    <div id="backgroundBlur">
-      <video id="bgPlay" autoplay playsinline></video>
-    </div>
-    <main>
-      <div class="wrap">
-        <h1 style="margin-bottom: 30px">FaceTime</h1>
-        <div id="shareLink">
-          <i class="fa-solid fa-link"></i>
-          <span
-            id="buttonContent"
-            style="color: #fff; letter-spacing: 0.8px"
-          ></span>
+    <div class="container">
+      <form id="join-form">
+        <input id="appid" type="text" placeholder="enter appid" />
+        <input
+          id="channel"
+          type="text"
+          placeholder="enter channel name"
+          required
+        />
+
+        <button id="join" type="submit" class="btn btn-primary btn-sm">
+          Join
+        </button>
+        <button
+          id="leave"
+          type="button"
+          class="btn btn-primary btn-sm"
+          disabled
+        >
+          Leave
+        </button>
+      </form>
+
+      <div class="row video-group">
+        <div class="col">
+          <p id="local-player-name" class="player-name"></p>
+          <div id="local-player" class="player"></div>
         </div>
-        <p>
-          My mother served as the main inspiration behind this app as we faced
-          challenges with in-person communication. Drawing from those
-          experiences, I bult a user-friendly <br />
-          and highly effective FaceTime application, significantly enhancing our
-          ability to connect and communicate effortlessly.
-        </p>
-        <p>
-          For optimal performance and to prevent any potential technical issues,
-          it is recommended to utilize Google Chrome as the default browser for
-          this specific app.
-        </p>
+        <div class="w-100"></div>
+        <div class="col">
+          <div id="remote-playerlist"></div>
+        </div>
       </div>
-    </main>
-    <section class="videos"></section>
+    </div>
+
+    <script src="/AgoraRTC_N-4.18.2.js"></script>
+    <script src="/index.js"></script>
   </body>
-  <script src="/main.js"></script>
 </html>

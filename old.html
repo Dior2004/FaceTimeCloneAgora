@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#121212" />
+    <link rel="stylesheet" href="/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>Face Time</title>
+  </head>
+  <body>
+    <div id="backgroundBlur">
+      <video id="bgPlay" autoplay playsinline></video>
+    </div>
+    <main>
+      <div class="wrap">
+        <h1 style="margin-bottom: 30px">FaceTime</h1>
+        <div id="shareLink">
+          <i class="fa-solid fa-link"></i>
+          <span
+            id="buttonContent"
+            style="color: #fff; letter-spacing: 0.8px"
+          ></span>
+        </div>
+        <p>
+          My mother served as the main inspiration behind this app as we faced
+          challenges with in-person communication. Drawing from those
+          experiences, I bult a user-friendly <br />
+          and highly effective FaceTime application, significantly enhancing our
+          ability to connect and communicate effortlessly.
+        </p>
+        <p>
+          For optimal performance and to prevent any potential technical issues,
+          it is recommended to utilize Google Chrome as the default browser for
+          this specific app.
+        </p>
+      </div>
+    </main>
+    <section class="videos">
+      <div class="user-1">
+        <video id="myVideo" autoplay playsinline></video>
+      </div>
+      <div class="user-2">
+        <video id="peersVideo" autoplay playsinline></video>
+        <div id="leave">leave</div>
+      </div>
+    </section>
+  </body>
+  <script src="AgoraRTC_N-4.18.2.js"></script>
+  <script src="index.js"></script>
+  <!-- <script src="main.js"></script> -->
+</html>
