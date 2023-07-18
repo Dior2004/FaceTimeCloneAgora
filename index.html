@@ -2,48 +2,91 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Basic Video Call -- Agora</title>
-    <link rel="stylesheet" href="/index.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>FaceTime</title>
   </head>
   <body>
-    <div class="container">
-      <form id="join-form">
-        <input id="appid" type="text" placeholder="enter appid" />
-        <input
-          id="channel"
-          type="text"
-          placeholder="enter channel name"
-          required
-        />
-
-        <button id="join" type="submit" class="btn btn-primary btn-sm">
-          Join
-        </button>
-        <button
-          id="leave"
-          type="button"
-          class="btn btn-primary btn-sm"
-          disabled
-        >
-          Leave
-        </button>
-      </form>
-
-      <div class="row video-group">
-        <div class="col">
-          <p id="local-player-name" class="player-name"></p>
-          <div id="local-player" class="player"></div>
+    <div id="backgroundBlur">
+      <video id="bgPlay" autoplay playsinline muted></video>
+    </div>
+    <main>
+      <div class="wrap">
+        <h1 style="margin-bottom: 30px">FaceTime</h1>
+        <div id="shareLink">
+          <i class="fa-solid fa-link"></i>
+          <span id="buttonContent" style="color: #fff; letter-spacing: 0.8px">
+            Create Link
+          </span>
         </div>
-        <div class="w-100"></div>
-        <div class="col">
-          <div id="remote-playerlist"></div>
+        <p>
+          My mother served as the main inspiration behind this app as we faced
+          challenges with in-person communication. Drawing from those
+          experiences, I bult a user-friendly <br />
+          and highly effective FaceTime application, significantly enhancing our
+          ability to connect and communicate effortlessly.
+        </p>
+        <p>
+          For optimal performance and to prevent any potential technical issues,
+          it is recommended to utilize Google Chrome as the default browser for
+          this specific app.
+        </p>
+      </div>
+    </main>
+    <section class="videos">
+      <!-- <div class="user-1">
+        <video id="myVideo" autoplay playsinline></video>
+      </div>
+      <div class="user-2">
+        <video id="peersVideo" autoplay playsinline></video>
+        <div id="leave">leave</div>
+      </div> -->
+
+      <div class="container">
+        <form id="join-form">
+          <input id="appid" type="text" placeholder="enter appid" />
+          <input
+            id="channel"
+            type="text"
+            placeholder="enter channel name"
+            required
+          />
+
+          <button id="join" type="submit" class="btn btn-primary btn-sm">
+            Join
+          </button>
+          <button
+            id="leave"
+            type="button"
+            class="btn btn-primary btn-sm"
+            disabled
+          >
+            Leave
+          </button>
+        </form>
+
+        <div class="row video-group">
+          <div class="col">
+            <p id="local-player-name" class="player-name"></p>
+            <div id="local-player" class="player"></div>
+          </div>
+          <div class="w-100"></div>
+          <div class="col">
+            <div id="remote-playerlist"></div>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
 
     <script src="/AgoraRTC_N-4.18.2.js"></script>
-    <script src="/index.js"></script>
+    <script src="/main.js"></script>
   </body>
 </html>
