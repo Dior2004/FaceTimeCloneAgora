@@ -1,4 +1,6 @@
 let createNewFaceTime = document.getElementById("newFaceTime");
+let channelCreate = document.getElementById("channelCreate");
+let createForm = document.getElementById("create-form");
 let createSection = document.querySelector("#createSection");
 let joinSection = document.querySelector("#joinSection");
 let myVideo = document.getElementById("myVideo");
@@ -15,21 +17,17 @@ let init = async () => {
 
 init();
 
-function createFaceTime() {
+function shareFaceTime(e) {
+  e.preventDefault();
   const title = window.document.title;
+  const roomName = channelCreate.value;
   const url = window.document.location.href;
-
-  document.querySelector(".wrap").style = "opacity: 0; transition: 0.5s";
-
-  setTimeout(() => {
-    createSection.style = "top: 0; transition: 0.5s;";
-  }, 500);
 
   if (navigator.share) {
     navigator
       .share({
         title: `${title}`,
-        text: "Invite id : 1234",
+        text: `You have been called to Room: ${roomName}`,
         url: `${url}`,
       })
       .then(() => {
@@ -43,6 +41,13 @@ joinFaceTime.addEventListener("click", () => {
   document.querySelector(".wrap").style = "opacity: 0; transition: 0.5s";
   setTimeout(() => {
     joinSection.style = "top: 0; transition: 0.5s;";
+  }, 500);
+});
+
+createNewFaceTime.addEventListener("click", () => {
+  document.querySelector(".wrap").style = "opacity: 0; transition: 0.5s";
+  setTimeout(() => {
+    createSection.style = "top: 0; transition: 0.5s;";
   }, 500);
 });
 
@@ -61,21 +66,18 @@ channelJoin.addEventListener("focus", () => {
 backCreate.addEventListener("click", () => {
   createSection.style = "top: 100%; transition: 0.5s;";
   joinSection.style = "display: flex";
-
   setTimeout(() => {
     document.querySelector(".wrap").style = "opacity: 1; transition: 0.5s";
   }, 500);
 });
+
 backJoin.addEventListener("click", () => {
   joinSection.style = "top: 100%; transition: 0.5s;";
   createSection.style = "display: flex";
-
   setTimeout(() => {
     document.querySelector(".wrap").style = "opacity: 1; transition: 0.5s";
   }, 500);
 });
-
-createNewFaceTime.addEventListener("click", createFaceTime);
 
 // create Agora client
 var client = AgoraRTC.createClient({ mode: "rtc", codec: "vp8" });
@@ -101,26 +103,24 @@ window.addEventListener("DOMContentLoaded", function () {
   options.token = urlParams.get("token");
   if (options.channel) {
     document.getElementById("appid").value = options.appid;
-    document.getElementById("channel").value = options.channel;
-    document.getElementById("join-form").submit();
+    channelCreate.value = options.channel;
+    createForm.submit();
   }
 });
 
-document
-  .getElementById("create-form")
-  .addEventListener("submit", async function (e) {
-    e.preventDefault();
-    // document.getElementById("join").disabled = true;
-    try {
-      options.appid = "62c1bcd773ea4592bb4f0f5ff8ad6b2e";
-      options.channel = document.getElementById("channel").value;
-      await join();
-    } catch (error) {
-      console.error(error);
-    } finally {
-      document.getElementById("leave").disabled = false;
-    }
-  });
+createForm.addEventListener("submit", async function (e) {
+  e.preventDefault();
+  document.getElementById("join").disabled = true;
+  try {
+    options.appid = "62c1bcd773ea4592bb4f0f5ff8ad6b2e";
+    options.channel = channelCreate.value;
+    await join();
+  } catch (error) {
+    console.error(error);
+  } finally {
+    document.getElementById("leave").disabled = false;
+  }
+});
 
 // document.getElementById("leave").addEventListener("click", function () {
 //   leave();
@@ -165,8 +165,8 @@ async function leave() {
   // leave the channel
   await client.leave();
 
-  document.getElementById("join").disabled = false;
-  document.getElementById("leave").disabled = true;
+  // document.getElementById("join").disabled = false;
+  // document.getElementById("leave").disabled = true;
   console.log("client leaves channel success");
 }
 
