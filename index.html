@@ -45,36 +45,43 @@
         </p>
       </div>
     </main>
-    <section class="videos">
-      <!-- <div class="user-1">
-        <video id="myVideo" autoplay playsinline></video>
-      </div>
-      <div class="user-2">
-        <video id="peersVideo" autoplay playsinline></video>
-        <div id="leave">leave</div>
-      </div> -->
 
-      <div class="container">
+    <section>
+      <div class="section-wrap">
+        <h1 style="margin-bottom: 30px; font-size: 32px">Room Name</h1>
         <form id="join-form">
-          <input id="appid" type="text" placeholder="enter appid" />
+          <input
+            id="appid"
+            type="text"
+            placeholder="enter appid"
+            style="display: none"
+          />
+
           <input
             id="channel"
             type="text"
-            placeholder="enter channel name"
+            placeholder="Enter a Room Name"
             required
           />
 
-          <button id="join" type="submit" class="btn btn-primary btn-sm">
-            Join
-          </button>
-          <button
-            id="leave"
-            type="button"
-            class="btn btn-primary btn-sm"
-            disabled
-          >
-            Leave
-          </button>
+          <div class="btn-wrap">
+            <button id="join" type="submit">
+              <i class="fa-solid fa-plus"></i>
+              <span>Create</span>
+            </button>
+            <div id="back">
+              <i class="fa-solid fa-arrow-right-from-bracket"></i>
+              <span>Go Back</span>
+            </div>
+            <!-- <button
+              id="leave"
+              type="button"
+              class="btn btn-primary btn-sm"
+              disabled
+            >
+              Leave
+            </button> -->
+          </div>
         </form>
 
         <div class="row video-group">

@@ -1,5 +1,5 @@
 let createNewFaceTime = document.getElementById("newFaceTime");
-let videosSection = document.querySelector(".videos");
+let videosSection = document.querySelector("section");
 let myVideo = document.getElementById("myVideo");
 let peersVideo = document.getElementById("peersVideo");
 
@@ -18,25 +18,37 @@ function createFaceTime() {
   const title = window.document.title;
   const url = window.document.location.href;
 
+  document.querySelector(".wrap").style = "opacity: 0; transition: 0.5s";
+
   setTimeout(() => {
-    videosSection.style = "scale: 1; transition: 0.5s;";
-    setTimeout(() => {
-      videosSection.style = "scale: 1; border-radius: 0px; transition: 0.5s;";
-    }, 400);
+    videosSection.style = "top: 0; transition: 0.5s;";
   }, 500);
 
-  if (navigator.share) {
-    navigator
-      .share({
-        title: `${title}`,
-        url: `${url}`,
-      })
-      .then(() => {
-        console.log("shared successfully");
-      })
-      .catch((error) => console.log(error));
-  }
+  // if (navigator.share) {
+  //   navigator
+  //     .share({
+  //       title: `${title}`,
+  //       url: `${url}`,
+  //     })
+  //     .then(() => {
+  //       console.log("shared successfully");
+  //     })
+  //     .catch((error) => console.log(error));
+  // }
 }
+
+channel.addEventListener("focus", () => {
+  document.querySelector(".wrap").style = "opacity: 0;";
+  videosSection.style = "top: 0;";
+});
+
+back.addEventListener("click", () => {
+  videosSection.style = "top: 100%; transition: 0.5s;";
+
+  setTimeout(() => {
+    document.querySelector(".wrap").style = "opacity: 1; transition: 0.5s";
+  }, 500);
+});
 
 createNewFaceTime.addEventListener("click", createFaceTime);
 
@@ -73,7 +85,7 @@ document
   .getElementById("join-form")
   .addEventListener("submit", async function (e) {
     e.preventDefault();
-    document.getElementById("join").disabled = true;
+    // document.getElementById("join").disabled = true;
     try {
       options.appid = "62c1bcd773ea4592bb4f0f5ff8ad6b2e";
       options.channel = document.getElementById("channel").value;
@@ -85,9 +97,9 @@ document
     }
   });
 
-document.getElementById("leave").addEventListener("click", function () {
-  leave();
-});
+// document.getElementById("leave").addEventListener("click", function () {
+//   leave();
+// });
 
 async function join() {
   // add event listener to play remote tracks when remote user publishes.
