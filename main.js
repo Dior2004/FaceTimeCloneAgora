@@ -18,6 +18,13 @@ function createFaceTime() {
   const title = window.document.title;
   const url = window.document.location.href;
 
+  setTimeout(() => {
+    videosSection.style = "scale: 1; transition: 0.5s;";
+    setTimeout(() => {
+      videosSection.style = "scale: 1; border-radius: 0px; transition: 0.5s;";
+    }, 400);
+  }, 500);
+
   if (navigator.share) {
     navigator
       .share({
@@ -28,15 +35,7 @@ function createFaceTime() {
         console.log("shared successfully");
       })
       .catch((error) => console.log(error));
-  } else {
   }
-
-  setTimeout(() => {
-    videosSection.style = "scale: 1; transition: 0.5s;";
-    setTimeout(() => {
-      videosSection.style = "scale: 1; border-radius: 0px; transition: 0.5s;";
-    }, 400);
-  }, 500);
 }
 
 createNewFaceTime.addEventListener("click", createFaceTime);

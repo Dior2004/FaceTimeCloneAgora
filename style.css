@@ -60,7 +60,7 @@ main .wrap {
 
 main .wrap p {
   max-width: 350px;
-  margin-top: 40px;
+  margin-top: 30px;
   text-align: center;
   letter-spacing: 0.6px;
   word-spacing: 2px;
@@ -77,9 +77,9 @@ main .button-wrapper {
 
 #newFaceTime,
 #joinFaceTime {
-  min-width: 130px;
+  min-width: 150px;
   height: 70px;
-  padding: 10px;
+  padding: 15px 0 10px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -90,8 +90,8 @@ main .button-wrapper {
   -webkit-backdrop-filter: blur(10px);
   box-shadow: 0 15px 70px #00000055;
   border-radius: 10px;
-  font-size: 15px;
-  font-weight: 400;
+  font-size: 16px;
+  font-weight: 500;
   cursor: pointer;
   transition: 0.3s;
 }
