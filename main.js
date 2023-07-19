@@ -31,12 +31,12 @@ function createFaceTime() {
   } else {
   }
 
-  // setTimeout(() => {
-  //   videosSection.style = "scale: 1; transition: 0.5s;";
-  //   setTimeout(() => {
-  //     videosSection.style = "scale: 1; border-radius: 0px; transition: 0.5s;";
-  //   }, 400);
-  // }, 500);
+  setTimeout(() => {
+    videosSection.style = "scale: 1; transition: 0.5s;";
+    setTimeout(() => {
+      videosSection.style = "scale: 1; border-radius: 0px; transition: 0.5s;";
+    }, 400);
+  }, 500);
 }
 
 createNewFaceTime.addEventListener("click", createFaceTime);
