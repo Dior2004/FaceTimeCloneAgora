@@ -19,22 +19,6 @@ init();
 
 function shareFaceTime(e) {
   e.preventDefault();
-  const title = window.document.title;
-  const roomName = channelCreate.value;
-  const url = window.document.location.href;
-
-  if (navigator.share) {
-    navigator
-      .share({
-        title: `${title}`,
-        text: `You have been called to Room: ${roomName}`,
-        url: `${url}`,
-      })
-      .then(() => {
-        console.log("shared successfully");
-      })
-      .catch((error) => console.log(error));
-  }
 }
 
 joinFaceTime.addEventListener("click", () => {
@@ -110,6 +94,23 @@ window.addEventListener("DOMContentLoaded", function () {
 
 createForm.addEventListener("submit", async function (e) {
   e.preventDefault();
+  const title = window.document.title;
+  const roomName = channelCreate.value;
+  const url = window.document.location.href;
+
+  if (navigator.share) {
+    navigator
+      .share({
+        title: `${title}`,
+        text: `You have been called to Room: ${roomName}`,
+        url: `${url}`,
+      })
+      .then(() => {
+        console.log("shared successfully");
+      })
+      .catch((error) => console.log(error));
+  }
+
   document.getElementById("join").disabled = true;
   try {
     options.appid = "62c1bcd773ea4592bb4f0f5ff8ad6b2e";
