@@ -44,58 +44,58 @@
           this specific app.
         </p>
       </div>
-    </main>
 
-    <section>
-      <div class="section-wrap">
-        <h1 style="margin-bottom: 30px; font-size: 32px">Room Name</h1>
-        <form id="join-form">
-          <input
-            id="appid"
-            type="text"
-            placeholder="enter appid"
-            style="display: none"
-          />
+      <section>
+        <div class="section-wrap">
+          <h1 style="margin-bottom: 30px; font-size: 32px">Room Name</h1>
+          <form id="join-form">
+            <input
+              id="appid"
+              type="text"
+              placeholder="enter appid"
+              style="display: none"
+            />
 
-          <input
-            id="channel"
-            type="text"
-            placeholder="Enter a Room Name"
-            required
-          />
+            <input
+              id="channel"
+              type="text"
+              placeholder="Enter a Room Name"
+              required
+            />
 
-          <div class="btn-wrap">
-            <button id="join" type="submit">
-              <i class="fa-solid fa-plus"></i>
-              <span>Create</span>
-            </button>
-            <div id="back">
-              <i class="fa-solid fa-arrow-right-from-bracket"></i>
-              <span>Go Back</span>
+            <div class="btn-wrap">
+              <button id="join" type="submit">
+                <i class="fa-solid fa-plus"></i>
+                <span>Create</span>
+              </button>
+              <div id="back">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                <span>Go Back</span>
+              </div>
+              <!-- <button
+                id="leave"
+                type="button"
+                class="btn btn-primary btn-sm"
+                disabled
+              >
+                Leave
+              </button> -->
             </div>
-            <!-- <button
-              id="leave"
-              type="button"
-              class="btn btn-primary btn-sm"
-              disabled
-            >
-              Leave
-            </button> -->
-          </div>
-        </form>
+          </form>
 
-        <div class="row video-group">
-          <div class="col">
-            <p id="local-player-name" class="player-name"></p>
-            <div id="local-player" class="player"></div>
-          </div>
-          <div class="w-100"></div>
-          <div class="col">
-            <div id="remote-playerlist"></div>
+          <div class="row video-group">
+            <div class="col">
+              <p id="local-player-name" class="player-name"></p>
+              <div id="local-player" class="player"></div>
+            </div>
+            <div class="w-100"></div>
+            <div class="col">
+              <div id="remote-playerlist"></div>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </main>
 
     <script src="/AgoraRTC_N-4.18.2.js"></script>
     <script src="/main.js"></script>
