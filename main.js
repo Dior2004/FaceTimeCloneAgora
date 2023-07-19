@@ -1,5 +1,6 @@
 let createNewFaceTime = document.getElementById("newFaceTime");
-let videosSection = document.querySelector("section");
+let createSection = document.querySelector("#createSection");
+let joinSection = document.querySelector("#joinSection");
 let myVideo = document.getElementById("myVideo");
 let peersVideo = document.getElementById("peersVideo");
 
@@ -21,29 +22,53 @@ function createFaceTime() {
   document.querySelector(".wrap").style = "opacity: 0; transition: 0.5s";
 
   setTimeout(() => {
-    videosSection.style = "top: 0; transition: 0.5s;";
+    createSection.style = "top: 0; transition: 0.5s;";
   }, 500);
 
-  // if (navigator.share) {
-  //   navigator
-  //     .share({
-  //       title: `${title}`,
-  //       url: `${url}`,
-  //     })
-  //     .then(() => {
-  //       console.log("shared successfully");
-  //     })
-  //     .catch((error) => console.log(error));
-  // }
+  if (navigator.share) {
+    navigator
+      .share({
+        title: `${title}`,
+        text: "Invite id : 1234",
+        url: `${url}`,
+      })
+      .then(() => {
+        console.log("shared successfully");
+      })
+      .catch((error) => console.log(error));
+  }
 }
 
-channel.addEventListener("focus", () => {
-  document.querySelector(".wrap").style = "opacity: 0;";
-  videosSection.style = "top: 0;";
+joinFaceTime.addEventListener("click", () => {
+  document.querySelector(".wrap").style = "opacity: 0; transition: 0.5s";
+  setTimeout(() => {
+    joinSection.style = "top: 0; transition: 0.5s;";
+  }, 500);
 });
 
-back.addEventListener("click", () => {
-  videosSection.style = "top: 100%; transition: 0.5s;";
+channelCreate.addEventListener("focus", () => {
+  document.querySelector(".wrap").style = "opacity: 0;";
+  joinSection.style = "display: none";
+  createSection.style = "top: 0;";
+});
+
+channelJoin.addEventListener("focus", () => {
+  document.querySelector(".wrap").style = "opacity: 0;";
+  joinSection.style = "top: 0;";
+  createSection.style = "display: none";
+});
+
+backCreate.addEventListener("click", () => {
+  createSection.style = "top: 100%; transition: 0.5s;";
+  joinSection.style = "display: flex";
+
+  setTimeout(() => {
+    document.querySelector(".wrap").style = "opacity: 1; transition: 0.5s";
+  }, 500);
+});
+backJoin.addEventListener("click", () => {
+  joinSection.style = "top: 100%; transition: 0.5s;";
+  createSection.style = "display: flex";
 
   setTimeout(() => {
     document.querySelector(".wrap").style = "opacity: 1; transition: 0.5s";
@@ -82,7 +107,7 @@ window.addEventListener("DOMContentLoaded", function () {
 });
 
 document
-  .getElementById("join-form")
+  .getElementById("create-form")
   .addEventListener("submit", async function (e) {
     e.preventDefault();
     // document.getElementById("join").disabled = true;
