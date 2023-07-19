@@ -1,4 +1,4 @@
-let shareLink = document.getElementById("shareLink");
+let createNewFaceTime = document.getElementById("newFaceTime");
 let videosSection = document.querySelector(".videos");
 let myVideo = document.getElementById("myVideo");
 let peersVideo = document.getElementById("peersVideo");
@@ -14,28 +14,32 @@ let init = async () => {
 
 init();
 
-function copyUrlToClipboard() {
-  var input = document.createElement("input");
+function createFaceTime() {
+  const title = window.document.title;
+  const url = window.document.location.href;
 
-  input.value = window.location.href;
+  if (navigator.share) {
+    navigator
+      .share({
+        title: `${title}`,
+        url: `${url}`,
+      })
+      .then(() => {
+        console.log("shared successfully");
+      })
+      .catch((error) => console.log(error));
+  } else {
+  }
 
-  document.body.appendChild(input);
-  input.select();
-  document.execCommand("copy");
-  document.body.removeChild(input);
-
-  document.getElementById("buttonContent").innerText = "Created";
-  shareLink.style = "background-color: #00f731b3";
-
-  setTimeout(() => {
-    videosSection.style = "scale: 1; transition: 0.5s;";
-    setTimeout(() => {
-      videosSection.style = "scale: 1; border-radius: 0px; transition: 0.5s;";
-    }, 400);
-  }, 500);
+  // setTimeout(() => {
+  //   videosSection.style = "scale: 1; transition: 0.5s;";
+  //   setTimeout(() => {
+  //     videosSection.style = "scale: 1; border-radius: 0px; transition: 0.5s;";
+  //   }, 400);
+  // }, 500);
 }
 
-shareLink.addEventListener("click", copyUrlToClipboard);
+createNewFaceTime.addEventListener("click", createFaceTime);
 
 // create Agora client
 var client = AgoraRTC.createClient({ mode: "rtc", codec: "vp8" });
