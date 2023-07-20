@@ -23,7 +23,7 @@ init();
 // smooth animations
 
 joinFaceTime.addEventListener("click", () => {
-  document.querySelector(".wrap").style = "opacity: 0; transition: 0.5s";
+  document.querySelector(".wrap").style = "opacity: 0; transition: 0.3s";
   setTimeout(() => {
     joinSection.style = "top: 0; transition: 0.5s;";
   }, 100);
@@ -33,7 +33,7 @@ joinFaceTime.addEventListener("click", () => {
 });
 
 createNewFaceTime.addEventListener("click", () => {
-  document.querySelector(".wrap").style = "opacity: 0; transition: 0.5s";
+  document.querySelector(".wrap").style = "opacity: 0; transition: 0.3s";
   setTimeout(() => {
     createSection.style = "top: 0; transition: 0.5s;";
   }, 100);
@@ -58,7 +58,7 @@ backCreate.addEventListener("click", () => {
   createSection.style = "top: 100%; transition: 0.5s;";
   joinSection.style = "display: flex";
   setTimeout(() => {
-    document.querySelector(".wrap").style = "opacity: 1; transition: 0.5s";
+    document.querySelector(".wrap").style = "opacity: 1; transition: 0.3s";
   }, 100);
 });
 
@@ -66,7 +66,7 @@ backJoin.addEventListener("click", () => {
   joinSection.style = "top: 100%; transition: 0.5s;";
   createSection.style = "display: flex";
   setTimeout(() => {
-    document.querySelector(".wrap").style = "opacity: 1; transition: 0.5s";
+    document.querySelector(".wrap").style = "opacity: 1; transition: 0.3s";
   }, 100);
 });
 
