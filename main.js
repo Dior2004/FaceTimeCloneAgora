@@ -26,20 +26,20 @@ joinFaceTime.addEventListener("click", () => {
   document.querySelector(".wrap").style = "opacity: 0; transition: 0.5s";
   setTimeout(() => {
     joinSection.style = "top: 0; transition: 0.5s;";
-  }, 100);
+  }, 200);
   setTimeout(() => {
     channelJoin.focus();
-  }, 600);
+  }, 1000);
 });
 
 createNewFaceTime.addEventListener("click", () => {
   document.querySelector(".wrap").style = "opacity: 0; transition: 0.5s";
   setTimeout(() => {
     createSection.style = "top: 0; transition: 0.5s;";
-  }, 100);
+  }, 200);
   setTimeout(() => {
     channelCreate.focus();
-  }, 600);
+  }, 1000);
 });
 
 channelCreate.addEventListener("focus", () => {
@@ -59,7 +59,7 @@ backCreate.addEventListener("click", () => {
   joinSection.style = "display: flex";
   setTimeout(() => {
     document.querySelector(".wrap").style = "opacity: 1; transition: 0.5s";
-  }, 100);
+  }, 200);
 });
 
 backJoin.addEventListener("click", () => {
@@ -67,7 +67,7 @@ backJoin.addEventListener("click", () => {
   createSection.style = "display: flex";
   setTimeout(() => {
     document.querySelector(".wrap").style = "opacity: 1; transition: 0.5s";
-  }, 100);
+  }, 200);
 });
 
 // create Agora client
