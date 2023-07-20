@@ -106,28 +106,20 @@
                 <i class="fa-solid fa-arrow-right-from-bracket"></i>
                 <span>Go Back</span>
               </div>
-              <button
-                id="leave"
-                type="button"
-                class="btn btn-primary btn-sm"
-                disabled
-              >
-                Leave
-              </button>
             </div>
           </form>
         </div>
       </section>
     </main>
 
-    <div class="row video-group">
-      <div class="col">
-        <p id="local-player-name" class="player-name"></p>
-        <div id="local-player" class="player"></div>
-      </div>
-      <div class="w-100"></div>
-      <div class="col">
-        <div id="remote-playerlist"></div>
+    <div id="videoDisplay">
+      <div class="video-display-wrap">
+        <div id="video-flex" class="video-flex">
+          <div id="myVideo" class="peersVideo"></div>
+        </div>
+        <button id="hangUp" type="button" disabled style="display: none">
+          Leave
+        </button>
       </div>
     </div>
 
