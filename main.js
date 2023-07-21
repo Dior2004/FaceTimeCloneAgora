@@ -52,7 +52,7 @@ backCreate.addEventListener("click", () => {
   createSection.style = "top: 100%; transition: 0.5s;";
   joinSection.style = "display: flex";
   setTimeout(() => {
-    document.querySelector(".wrap").style = "opacity: 1; transition: 0.5s";
+    document.querySelector(".wrap").style = "opacity: 1; transition: 0.7s";
   }, 250);
 });
 
@@ -60,7 +60,7 @@ backJoin.addEventListener("click", () => {
   joinSection.style = "top: 100%; transition: 0.5s;";
   createSection.style = "display: flex";
   setTimeout(() => {
-    document.querySelector(".wrap").style = "opacity: 1; transition: 0.5s";
+    document.querySelector(".wrap").style = "opacity: 1; transition: 0.7s";
   }, 250);
 });
 
