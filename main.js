@@ -128,7 +128,7 @@ createForm.addEventListener("submit", async function (e) {
     options.channel = channelCreate.value;
     await join();
   } catch (error) {
-    console.error(error);
+    console.log(error);
   } finally {
     hangUp.disabled = false;
   }
@@ -218,18 +218,76 @@ async function subscribe(user, mediaType) {
     document.getElementById("video-flex").appendChild(newPeerVideo);
     user.videoTrack.play(`peersVideo-${uid}`);
   }
-  if (mediaType === "audio") {
-    user.audioTrack.play();
-  }
 
   let allVideos = document.querySelectorAll(".peersVideo");
+  allVideos.forEach((i) => i.classList.remove("chosen"));
+
+  lastChildDetection();
+
   allVideos.forEach((list) =>
     list.addEventListener("click", () => {
       allVideos.forEach((i) => i.classList.remove("chosen"));
       list.classList.toggle("chosen");
     })
   );
+
+  if (mediaType === "audio") {
+    user.audioTrack.play();
+  }
 }
+
+let allVideos = document.querySelectorAll(".peersVideo");
+
+lastChildDetection();
+
+allVideos.forEach((list) =>
+  list.addEventListener("click", () => {
+    allVideos.forEach((i) => i.classList.remove("chosen"));
+    list.classList.toggle("chosen");
+  })
+);
+
+function lastChildDetection() {
+  let fatherEllement = document.querySelector("#video-flex");
+
+  let lastElementChild = null;
+  let currentNode = fatherEllement.lastChild;
+
+  while (currentNode !== null) {
+    if (currentNode.nodeType === Node.ELEMENT_NODE) {
+      lastElementChild = currentNode;
+      break;
+    }
+    currentNode = currentNode.previousSibling;
+  }
+
+  lastElementChild.classList.add("chosen");
+}
+
+// Function to handle the mutation
+function handleMutation(mutationsList) {
+  for (const mutation of mutationsList) {
+    if (mutation.type === "childList") {
+      // Call the lastChildDetection function whenever a new element is added
+      lastChildDetection();
+    }
+  }
+}
+
+// The element that needs to be observed for changes
+const fatherEllement = document.querySelector("#video-flex");
+
+// Creating a new Mutation Observer
+const observer = new MutationObserver(handleMutation);
+
+// Options for the observer (watch for changes in the direct children of the target element)
+const observerOptions = {
+  childList: true,
+  subtree: false,
+};
+
+// Sarting to observe the target element
+observer.observe(fatherEllement, observerOptions);
 
 function handleUserPublished(user, mediaType) {
   const id = user.uid;
