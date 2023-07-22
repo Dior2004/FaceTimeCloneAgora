@@ -288,7 +288,7 @@ video {
   overflow: hidden;
   color: #121212;
   background-color: transparent;
-  box-shadow: 0 8px 20px #00000055;
+  box-shadow: 0 8px 18px #00000055;
 }
 
 .chosen {
