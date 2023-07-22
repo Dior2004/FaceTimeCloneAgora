@@ -23,10 +23,13 @@ init();
 // smooth animations
 
 joinFaceTime.addEventListener("click", () => {
-  document.querySelector(".wrap").style = "opacity: 0; transition: 0.7s";
+  document.querySelector(".wrap").style = "opacity: 0; transition: 0.5s";
   setTimeout(() => {
-    joinSection.style = "top: 0; transition: 0.6s;";
+    joinSection.style = "top: 0; transition: 0.5s;";
   }, 100);
+  setTimeout(() => {
+    channelJoin.focus();
+  }, 700);
 });
 
 createNewFaceTime.addEventListener("click", () => {
@@ -34,6 +37,9 @@ createNewFaceTime.addEventListener("click", () => {
   setTimeout(() => {
     createSection.style = "top: 0; transition: 0.6s;";
   }, 100);
+  setTimeout(() => {
+    channelCreate.focus();
+  }, 700);
 });
 
 channelCreate.addEventListener("focus", () => {
@@ -49,18 +55,18 @@ channelJoin.addEventListener("focus", () => {
 });
 
 backCreate.addEventListener("click", () => {
-  createSection.style = "top: 100%; transition: 0.6s;";
+  createSection.style = "top: 100%; transition: 0.5s;";
   joinSection.style = "display: flex";
   setTimeout(() => {
-    document.querySelector(".wrap").style = "opacity: 1; transition: 0.7s";
+    document.querySelector(".wrap").style = "opacity: 1; transition: 0.5s";
   }, 100);
 });
 
 backJoin.addEventListener("click", () => {
-  joinSection.style = "top: 100%; transition: 0.6s;";
+  joinSection.style = "top: 100%; transition: 0.5s;";
   createSection.style = "display: flex";
   setTimeout(() => {
-    document.querySelector(".wrap").style = "opacity: 1; transition: 0.7s";
+    document.querySelector(".wrap").style = "opacity: 1; transition: 0.5s";
   }, 100);
 });
 
