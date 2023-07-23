@@ -105,6 +105,9 @@ window.addEventListener("DOMContentLoaded", function () {
 
 createForm.addEventListener("submit", async function (e) {
   e.preventDefault();
+
+  channelCreate.blur();
+
   const title = window.document.title;
   const roomName = channelCreate.value;
   const url = window.document.location.href;
@@ -145,6 +148,8 @@ createForm.addEventListener("submit", async function (e) {
 
 joinForm.addEventListener("submit", async function (e) {
   e.preventDefault();
+
+  channelJoin.blur();
 
   setTimeout(() => {
     videoDisplay.style = "scale: 1; transition: 0.5s;";
