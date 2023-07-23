@@ -73,6 +73,25 @@ backJoin.addEventListener("click", () => {
   }, 100);
 });
 
+// Variables to keep track of mute status
+let isAudioMuted = false;
+let isVideoMuted = false;
+
+muteAudio.addEventListener("click", () => {
+  isAudioMuted = !isAudioMuted;
+  muteAudio.innerHTML = isAudioMuted
+    ? `<i class="fa-solid fa-microphone-slash"></i>`
+    : `<i class="fa-solid fa-microphone"></i>`;
+});
+
+muteVideo.addEventListener("click", () => {
+  isVideoMuted = !isVideoMuted;
+  localTracks.videoTrack.setEnabled(!isVideoMuted);
+  muteVideo.innerHTML = isVideoMuted
+    ? `<i class="fa-solid fa-video-slash"></i>`
+    : `<i class="fa-solid fa-video"></i>`;
+});
+
 // create Agora client
 var client = AgoraRTC.createClient({ mode: "rtc", codec: "vp8" });
 
@@ -182,8 +201,10 @@ async function join() {
   );
 
   // Create separate local tracks for audio and video
-  localTracks.audioTrack = await AgoraRTC.createMicrophoneAudioTrack();
-  localTracks.videoTrack = await AgoraRTC.createCameraVideoTrack();
+  if (!isAudioMuted)
+    localTracks.audioTrack = await AgoraRTC.createMicrophoneAudioTrack();
+  if (!isVideoMuted)
+    localTracks.videoTrack = await AgoraRTC.createCameraVideoTrack();
 
   localStream = await navigator.mediaDevices.getUserMedia({
     video: true,
@@ -315,23 +336,3 @@ function handleUserUnpublished(user) {
   delete remoteUsers[id];
   document.getElementById(`peersVideo-${id}`).remove();
 }
-
-// Variables to keep track of mute status
-let isAudioMuted = false;
-let isVideoMuted = false;
-
-muteAudio.addEventListener("click", () => {
-  isAudioMuted = !isAudioMuted;
-  localTracks.audioTrack.setEnabled(!isAudioMuted);
-  muteAudio.innerHTML = isAudioMuted
-    ? `<i class="fa-solid fa-microphone-slash"></i>`
-    : `<i class="fa-solid fa-microphone"></i>`;
-});
-
-muteVideo.addEventListener("click", () => {
-  isVideoMuted = !isVideoMuted;
-  localTracks.videoTrack.setEnabled(!isVideoMuted);
-  muteVideo.innerHTML = isVideoMuted
-    ? `<i class="fa-solid fa-video-slash"></i>`
-    : `<i class="fa-solid fa-video"></i>`;
-});
