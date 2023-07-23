@@ -186,7 +186,7 @@ async function join() {
 
   localStream = await navigator.mediaDevices.getUserMedia({
     video: true,
-    audio: false,
+    audio: true,
   });
 
   myVideoPlayer.srcObject = localStream;
@@ -316,29 +316,20 @@ function handleUserUnpublished(user) {
 }
 
 // Variables to keep track of mute status
-let isAudioMuted = false;
 let isVideoMuted = false;
-
-// Functions to toggle audio and video mute state
-function toggleAudioMute() {
-  isAudioMuted = !isAudioMuted;
-  localTracks.audioTrack.setEnabled(!isAudioMuted);
-}
-
-function toggleVideoMute() {
-  isVideoMuted = !isVideoMuted;
-  localTracks.videoTrack.setEnabled(!isVideoMuted);
-}
+let isAudioMuted = false;
 
 muteAudio.addEventListener("click", () => {
-  toggleAudioMute();
+  isAudioMuted = !isAudioMuted;
+  localTracks.audioTrack.setEnabled(!isAudioMuted);
   muteAudio.innerHTML = isAudioMuted
     ? `<i class="fa-solid fa-microphone-slash"></i>`
     : `<i class="fa-solid fa-microphone"></i>`;
 });
 
 muteVideo.addEventListener("click", () => {
-  toggleVideoMute();
+  isVideoMuted = !isVideoMuted;
+  localTracks.videoTrack.setEnabled(!isVideoMuted);
   muteVideo.innerHTML = isVideoMuted
     ? `<i class="fa-solid fa-video-slash"></i>`
     : `<i class="fa-solid fa-video"></i>`;
