@@ -175,14 +175,15 @@ async function join() {
   client.on("user-unpublished", handleUserUnpublished);
 
   // join a channel and create local tracks, we can use Promise.all to run them concurrently
-  [options.uid, localTracks.audioTrack, localTracks.videoTrack] =
-    await Promise.all([
-      // join the channel
-      client.join(options.appid, options.channel, options.token || null),
-      // create local tracks, using microphone and camera
-      AgoraRTC.createMicrophoneAudioTrack(),
-      AgoraRTC.createCameraVideoTrack(),
-    ]);
+  options.uid = await client.join(
+    options.appid,
+    options.channel,
+    options.token || null
+  );
+
+  // Create separate local tracks for audio and video
+  localTracks.audioTrack = await AgoraRTC.createMicrophoneAudioTrack();
+  localTracks.videoTrack = await AgoraRTC.createCameraVideoTrack();
 
   localStream = await navigator.mediaDevices.getUserMedia({
     video: true,
@@ -316,8 +317,8 @@ function handleUserUnpublished(user) {
 }
 
 // Variables to keep track of mute status
-let isVideoMuted = false;
 let isAudioMuted = false;
+let isVideoMuted = false;
 
 muteAudio.addEventListener("click", () => {
   isAudioMuted = !isAudioMuted;
