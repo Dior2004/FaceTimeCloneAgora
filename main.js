@@ -216,9 +216,7 @@ async function leave() {
   document.getElementById("join").disabled = false;
   console.log("client leaves channel success");
 
-  setTimeout(() => {
-    videoDisplay.style = "scale: 0; border-radius: 20px; transition: 0.3s;";
-  }, 100);
+  videoDisplay.style = "scale: 0; border-radius: 20px; transition: 0.3s;";
 }
 
 async function subscribe(user, mediaType) {
