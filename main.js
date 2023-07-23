@@ -8,6 +8,7 @@ let createSection = document.querySelector("#createSection");
 let joinSection = document.querySelector("#joinSection");
 let myVideo = document.getElementById("myVideo");
 let peersVideo = document.getElementById("peersVideo");
+let myVideoPlayer = document.getElementById("myVideoPlayer");
 
 let init = async () => {
   localStream = await navigator.mediaDevices.getUserMedia({
@@ -183,12 +184,14 @@ async function join() {
       AgoraRTC.createCameraVideoTrack(),
     ]);
 
-  // play local video track
-  localTracks.videoTrack.play(myVideo);
+  localStream = await navigator.mediaDevices.getUserMedia({
+    video: true,
+    audio: false,
+  });
 
-  // publish local tracks to channel
+  myVideoPlayer.srcObject = localStream;
+
   await client.publish(Object.values(localTracks));
-  console.log("publish success");
 }
 
 async function leave() {
