@@ -9,6 +9,8 @@ let joinSection = document.querySelector("#joinSection");
 let myVideo = document.getElementById("myVideo");
 let peersVideo = document.getElementById("peersVideo");
 let myVideoPlayer = document.getElementById("myVideoPlayer");
+let muteAudio = document.getElementById("muteAudio");
+let muteVideo = document.getElementById("muteVideo");
 
 let init = async () => {
   localStream = await navigator.mediaDevices.getUserMedia({
@@ -98,6 +100,7 @@ window.addEventListener("DOMContentLoaded", function () {
     document.getElementById("appid").value = options.appid;
     channelCreate.value = options.channel;
     createForm.submit();
+    joinForm.submit();
   }
 });
 
@@ -139,8 +142,6 @@ createForm.addEventListener("submit", async function (e) {
     await join();
   } catch (error) {
     console.log(error);
-  } finally {
-    hangUp.disabled = false;
   }
 });
 
@@ -164,14 +165,8 @@ joinForm.addEventListener("submit", async function (e) {
     options.channel = channelJoin.value;
     await join();
   } catch (error) {
-    console.error(error);
-  } finally {
-    hangUp.disabled = false;
+    console.log(error);
   }
-});
-
-hangUp.addEventListener("click", function () {
-  leave();
 });
 
 async function join() {
@@ -199,6 +194,8 @@ async function join() {
   await client.publish(Object.values(localTracks));
 }
 
+hangUp.addEventListener("click", leave);
+
 async function leave() {
   for (var trackName in localTracks) {
     var track = localTracks[trackName];
@@ -215,9 +212,12 @@ async function leave() {
   // leave the channel
   await client.leave();
 
-  // document.getElementById("join").disabled = false;
-  // hangUp.disabled = true;
+  document.getElementById("join").disabled = false;
   console.log("client leaves channel success");
+
+  setTimeout(() => {
+    videoDisplay.style = "scale: 0; border-radius: 20px; transition: 0.3s;";
+  }, 100);
 }
 
 async function subscribe(user, mediaType) {
@@ -314,3 +314,32 @@ function handleUserUnpublished(user) {
   delete remoteUsers[id];
   document.getElementById(`peersVideo-${id}`).remove();
 }
+
+// Variables to keep track of mute status
+let isAudioMuted = false;
+let isVideoMuted = false;
+
+// Functions to toggle audio and video mute state
+function toggleAudioMute() {
+  isAudioMuted = !isAudioMuted;
+  localTracks.audioTrack.setEnabled(!isAudioMuted);
+}
+
+function toggleVideoMute() {
+  isVideoMuted = !isVideoMuted;
+  localTracks.videoTrack.setEnabled(!isVideoMuted);
+}
+
+muteAudio.addEventListener("click", () => {
+  toggleAudioMute();
+  muteAudio.innerHTML = isAudioMuted
+    ? `<i class="fa-solid fa-microphone-slash"></i>`
+    : `<i class="fa-solid fa-microphone"></i>`;
+});
+
+muteVideo.addEventListener("click", () => {
+  toggleVideoMute();
+  muteVideo.innerHTML = isVideoMuted
+    ? `<i class="fa-solid fa-video-slash"></i>`
+    : `<i class="fa-solid fa-video"></i>`;
+});
