@@ -182,6 +182,7 @@ async function join() {
   );
 
   // Create separate local tracks for audio and video
+  localTracks.audioTrack = await AgoraRTC.createMicrophoneAudioTrack();
   localTracks.videoTrack = await AgoraRTC.createCameraVideoTrack();
 
   localStream = await navigator.mediaDevices.getUserMedia({
