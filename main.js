@@ -315,16 +315,17 @@ function handleUserUnpublished(user) {
 }
 
 // Variables to keep track of mute status
-let isAudioMuted = false;
-let isVideoMuted = false;
+// let isAudioMuted = false;
 
-muteAudio.addEventListener("click", () => {
-  isAudioMuted = !isAudioMuted;
-  localTracks.audioTrack.setEnabled(!isAudioMuted);
-  muteAudio.innerHTML = isAudioMuted
-    ? `<i class="fa-solid fa-microphone-slash"></i>`
-    : `<i class="fa-solid fa-microphone"></i>`;
-});
+// muteAudio.addEventListener("click", () => {
+//   isAudioMuted = !isAudioMuted;
+//   localTracks.audioTrack.setEnabled(!isAudioMuted);
+//   muteAudio.innerHTML = isAudioMuted
+//     ? `<i class="fa-solid fa-microphone-slash"></i>`
+//     : `<i class="fa-solid fa-microphone"></i>`;
+// });
+
+let isVideoMuted = false;
 
 muteVideo.addEventListener("click", () => {
   isVideoMuted = !isVideoMuted;
